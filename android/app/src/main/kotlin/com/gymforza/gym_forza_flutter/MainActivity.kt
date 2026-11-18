@@ -1,4 +1,4 @@
-package com.gymforza.gym_forza_flutter
+package com.gymforza.access
 
 import io.flutter.embedding.android.FlutterActivity
 
