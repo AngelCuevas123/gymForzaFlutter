@@ -96,7 +96,7 @@ class _AccessState extends State<Access>{
    final r=await Api.validate(s.accessToken,qr.toLowerCase());
    setState(() { authorized = r['authorized']==true; member = r['member'] is Map<String,dynamic> ? r['member'] as Map<String,dynamic> : null; message = (r['message'] ?? (r['authorized']==true ? 'Acceso autorizado.' : 'Acceso denegado.')).toString(); });
   } on ApiException catch(e){setState(() { authorized=false; message=e.message; });if(e.unauthorized)await widget.onLogout();}
-  catch(e){setState(()=>{authorized:false,message:e.toString().replaceFirst('Exception: ',''));}
+  catch(e){setState(() { authorized=false; message=e.toString().replaceFirst('Exception: ',''); });}
   finally{if(mounted){setState(()=>busy=false);processing=false;try{await scanner.start();}catch(_){}}}
  }
  @override Widget build(BuildContext context){
